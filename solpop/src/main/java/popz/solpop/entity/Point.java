@@ -1,8 +1,9 @@
 package popz.solpop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -11,14 +12,24 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "point")
 public class Point {
 
   @Id
-  private long pointNo;
-  private long userNo;
-  private java.sql.Date popUpStoreRaffleStartDate;
-  private java.sql.Time popUpStoreRaffleEndDate;
-  private String popUpStoreRaffleQualification;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "point_id")
+  private Integer pointId;
+
+
+  @OneToOne
+  @JoinColumn(name = "mem_id")
+  private Member member;
+
+  @Column(name = "point_used_at")
+  private LocalDateTime pointUsedAt;
+
+  @Column(name = "point_place")
+  private String pointPlace;
 
 
 }

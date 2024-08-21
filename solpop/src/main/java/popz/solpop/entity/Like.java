@@ -10,23 +10,20 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "account")
-public class Account {
+@Table(name = "like")
+public class Like {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "account_id")
-  private Integer accountId;
+  @Column(name = "like_id")
+  private Integer likeId;
 
   @ManyToOne
   @JoinColumn(name = "mem_id", nullable = false)
   private Member member;
 
-  @Column(name = "account_no")
-  private String accountNo;
-
-  @Column(name = "account_balance")
-  private int accountBalance;
-
+  @ManyToOne
+  @JoinColumn(name = "store_id", nullable = false)
+  private Store store;
 
 }
